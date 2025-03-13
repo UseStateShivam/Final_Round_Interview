@@ -14,13 +14,13 @@ const Payment = ({ navigation }: Props) => {
   // Fetch PaymentIntent client secret
   const fetchPaymentIntentClientSecret = async () => {
     try {
-      const backendUrl = 'https://api.stripe.com/v1/payment_intents'; // Your actual backend URL
+      const backendUrl = 'https://api.stripe.com/v1/payment_intents';
       const response = await axios.post(
         backendUrl,
         {
-          amount: 1099, // Amount in cents
+          amount: 1099,
           currency: 'usd',
-          'payment_method_types[]': 'card', // Array syntax for Stripe API
+          'payment_method_types[]': 'card', 
         },
         {
           headers: {

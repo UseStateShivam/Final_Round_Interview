@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Interview_App",
+    "slug": "Interview_App",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "plugin": ["@react-native-google-signin/google-signin"],
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff",
+        "googleServicesFile": "./google-services.json"
+      },
+      "package": "com.just_shxv.m.Interview_App"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9b43e917-ccbb-49c5-9ae8-11fe3f3469c7"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "564986500052",
+    "project_id": "expo-auth-e5cdf",
+    "storage_bucket": "expo-auth-e5cdf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564986500052:android:14f51c059c9c0fd8a3fc41",
+        "android_client_info": {
+          "package_name": "com.just_shxv.m.Interview_App"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564986500052-lckjvv2quk6vul8ri8nign97e4sucira.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.just_shxv.m.Interview_App",
+            "certificate_hash": "e2227e5c71ed859dceba0b88ea50dc3a010c8e9d"
+          }
+        },
+        {
+          "client_id": "564986500052-orb0nh63f446vgb3q1jbt6o26bg5h70u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.just_shxv.m.Interview_App",
+            "certificate_hash": "0d6a09696d99ed8c71a69c80615153d0da22083a"
+          }
+        },
+        {
+          "client_id": "564986500052-s8r3egsshe2hdhhli3ca1jk9h2cu5vdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt5gdTUfKppKxGDUOqgdEYCMrfrXPt7Pk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564986500052-s8r3egsshe2hdhhli3ca1jk9h2cu5vdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
