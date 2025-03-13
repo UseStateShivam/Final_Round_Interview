@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "461208453360",
+    "project_id": "final-round-interview",
+    "storage_bucket": "final-round-interview.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461208453360:android:83336c4374621a5e7b8235",
+        "android_client_info": {
+          "package_name": "com.anonymous.Final_Round_APP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461208453360-v2q99sk2n0fn1c8p0llek3kdgoqhjani.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsRPGykyVxgxnxa0JMyQxlKK1NjCYgPeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461208453360-v2q99sk2n0fn1c8p0llek3kdgoqhjani.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,52 +1,64 @@
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StripeProvider, useStripe } from '@stripe/stripe-react-native';
+import axios from 'axios';
 import { RootStackParamList } from '@/utils/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Payment">;
 
-const Payment = ({navigation}: Props) => {
+const Payment = ({ navigation }: Props) => {
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [loading, setLoading] = useState(false);
 
-  // Hardcoded clientSecret for demo purposes (in reality, this comes from a server)
-  const mockClientSecret = 'pi_3R23cmRhxaaIrfIN0mCZxvAy_secret_NhVgix0LdaX9m0gbp8ldYsPMC'; 
-
-  // Simulate fetching a PaymentIntent clientSecret (normally done via server API call)
+  // Fetch PaymentIntent client secret
   const fetchPaymentIntentClientSecret = async () => {
-    // For interview demo: Returning a mocked clientSecret
-    // In production: This would be an API call to out backend
-    return mockClientSecret;
-  };
-
-  useEffect(() => {
-    const initializePaymentSheet = async () => {
-      try {
-        const clientSecret = await fetchPaymentIntentClientSecret();
-        const { error } = await initPaymentSheet({
-          merchantDisplayName: 'Interview Demo Store',
-          paymentIntentClientSecret: clientSecret,
-          // Optional: Customize appearance for a polished look
-          style: 'alwaysLight',
-        });
-        if (error) {
-          console.log('Error initializing payment sheet:', error.message);
-          Alert.alert('Error', 'Failed to initialize payment sheet');
-        } else {
-          console.log('Payment sheet initialized successfully');
+    try {
+      const backendUrl = 'https://api.stripe.com/v1/payment_intents'; // Your actual backend URL
+      const response = await axios.post(
+        backendUrl,
+        {
+          amount: 1099, // Amount in cents
+          currency: 'usd',
+          'payment_method_types[]': 'card', // Array syntax for Stripe API
+        },
+        {
+          headers: {
+            'Authorization': 'Bearer sk_test_51R23SERhxaaIrfINR906dQH8P0F8wxQTqVmR6MD1t1hORhU4ssjahZ878ez9UxKs0OEWaPcr37nicMTW1TLHLYvM00SJHVgYGJ',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
         }
-      } catch (err) {
-        console.error('Initialization error:', err);
-      }
-    };
-    initializePaymentSheet();
-  }, [initPaymentSheet]);
+      );
+      return response.data.client_secret;
+    } catch (error: any) {
+      console.error('Error fetching client secret:', error.response ? error.response.data : error.message);
+      Alert.alert('Error', 'Failed to fetch payment intent');
+      return null;
+    }
+  };
 
   // Handle payment button press
   const onCheckoutPress = async () => {
     setLoading(true);
     try {
+      // Fetch a new PaymentIntent client secret each time
+      const clientSecret = await fetchPaymentIntentClientSecret();
+      if (!clientSecret) return; // Handle the case where clientSecret is null
+
+      // Initialize the payment sheet with the new clientSecret
+      const { error: initError } = await initPaymentSheet({
+        merchantDisplayName: 'Interview Demo Store',
+        paymentIntentClientSecret: clientSecret,
+        style: 'alwaysLight',
+      });
+      
+      if (initError) {
+        console.log('Error initializing payment sheet:', initError.message);
+        Alert.alert('Error', 'Failed to initialize payment sheet');
+        return;
+      }
+
+      // Present the payment sheet
       const { error } = await presentPaymentSheet();
       if (error) {
         console.log('Payment failed:', error.message);
@@ -54,6 +66,7 @@ const Payment = ({navigation}: Props) => {
       } else {
         console.log('Payment succeeded');
         Alert.alert('Success', 'Payment completed successfully!');
+        navigation.navigate('Home');
       }
     } catch (err) {
       console.error('Checkout error:', err);
